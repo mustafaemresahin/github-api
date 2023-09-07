@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Github API</title>
+</head>
+<body>
+    <div class="container" id="container">
+        <h1>Github API</h1>
+        <div class="searchBox">
+            <input type="text" id="searchInput" placeholder="Enter Github Username">
+            <button onclick="searchGithub()">Search</button>
+        </div>
+        <div id="mini" style="display:none;">
+            <hr>
+            <div class="tab">
+                <button class="tablinks active" onclick="openTab(event, 'Details')" id="defaultOpen">Details</button>
+                <button class="tablinks" onclick="openTab(event, 'Repos')">Repositories</button>
+            </div>
+            <div id="Details" class="tab-content">
+                <div class="profile">
+                    <div>
+                        <div class="profile-image" style="display: inline-block;">
+                            <img src="#" alt="User Image" />
+                        </div>
+                        <div class="stats" style="display: inline-block;">
+                            <div style="display: inline-block;">
+                                <div class="stats-name">Public Repos</div>
+                                <div class="stats-value"></div>
+                            </div>
+                            <div style="display: inline-block;">
+                                <div class="stats-name">Followers</div>
+                                <div class="stats-value"></div>
+                            </div>
+                            <div style="display: inline-block;">
+                                <div class="stats-name">Following</div>
+                                <div class="stats-value"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <h2 class="name">Name</h2>
+                        <p class="username">@username</p>
+                        <p class="bio">Bio</p>
+                        <p class="location">Location</p>
+                        <a href="#" target="_blank">Go to github profile</a>
+                        <div class="stats">
+                            <div>
+                                <div class="stats-name">Account Created At:</div>
+                                <div class="stats-value"></div>
+                            </div>
+                            <div>
+                                <div class="stats-name">Email:</div>
+                                <div class="stats-value"></div>
+                            </div>
+                            <div>
+                                <div class="stats-name">Blog:</div>
+                                <div class="stats-value"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Repos" class="tab-content">
+                <!-- Repository details will go here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
