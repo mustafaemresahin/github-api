@@ -2,17 +2,19 @@ const searchGithub = async () => {
     // Fetch user profile
     const username = document.getElementById("searchInput").value;
     const headers = {
-        "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
+        "Authorization": `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`
     };
     
     const response = await fetch(`https://api.github.com/users/${username}`, { headers });
     const data = await response.json();    
 
-    if (response.status === 404) {
+    if (response.status == 404) {
         // Handle user not found
         const mini = document.getElementById("mini");
         mini.style.display = "block";
-        mini.innerHTML = '<h1>User does not exist!</h1>';
+        mini.innerHTML = '<h1 style="padding-top:20px;">User does not exist!</h1><div style="text-align:center;"><h3>Refresh the page</h3><button onclick="refresh()">Refresh</button></div>';
+        searchInput.disabled = true;
+        searchButton.disabled = true;
     }
     else{
         const mini = document.getElementById("mini");
@@ -63,8 +65,8 @@ const searchGithub = async () => {
             repos.forEach((repo) => {
                 repoList += `
                     <div class="repo-detail">
-                        <h3>${repo.name}</h3>
-                        <p>${repo.description || 'No description'}</p>
+                        <h2>${repo.name}</h2><br>
+                        <p>${repo.description || 'No description'}</p><br>
                         <a href="${repo.html_url}" target="_blank"><button>Go to repository</button></a>
                     </div>
                 `;
@@ -104,3 +106,7 @@ searchInput.addEventListener('keydown', function(event) {
     searchGithub();
   }
 });
+
+function refresh(){
+    location.reload();
+}
