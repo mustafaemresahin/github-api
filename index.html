@@ -8,11 +8,12 @@
 </head>
 <body>
     <div class="container" id="container">
-        <h1>Github API</h1>
+        <h1 onclick="refresh()" style="cursor: pointer;">Github API</h1>
         <div class="searchBox">
             <input type="text" id="searchInput" placeholder="Enter Github Username">
             <button onclick="searchGithub()">Search</button>
         </div>
+        <br>
         <div id="mini" style="display:none;">
             <div class="tab">
                 <button class="tablinks active" onclick="openTab(event, 'Details')" id="defaultOpen">Details</button>
@@ -25,7 +26,8 @@
                             <img src="#" alt="User Image" />
                         </div>
                         <div class="stats" style="display: inline-block;">
-                            <div style="display: inline-block;">
+                            <div style="display: inline-block; justify-content: center;
+                            border-width: 5px; border-color: red; ">
                                 <div class="stats-name">Public Repos</div>
                                 <div class="stats-value"></div>
                             </div>
