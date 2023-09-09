@@ -2,7 +2,7 @@ const searchGithub = async () => {
     // Fetch user profile
     const username = document.getElementById("searchInput").value;
     const headers = {
-        "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
+        "Authorization": `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`
     };
     
     const response = await fetch(`https://api.github.com/users/${username}`, { headers });
@@ -62,6 +62,7 @@ const searchGithub = async () => {
             reposContainer.innerHTML = `<br><h1>User doesn't have any repos!</h1>`;
         }
         else{
+            repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} Repositories</h2>`
             repos.forEach((repo) => {
                 repoList += `
                     <div class="repo-detail">
