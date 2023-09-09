@@ -62,7 +62,7 @@ const searchGithub = async () => {
             reposContainer.innerHTML = `<br><h1>User doesn't have any repos!</h1>`;
         }
         else{
-            repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} Repositories</h2>`
+            repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} public Repositories</h2>`
             repos.forEach((repo) => {
                 repoList += `
                     <div class="repo-detail">
@@ -74,8 +74,27 @@ const searchGithub = async () => {
             });
             reposContainer.innerHTML = repoList;
         }
-    }
+        // Fetch and display repositories
+        const response3 = await fetch(`https://api.github.com/users/${username}/followers`, { headers });
+        const followers = await response3.json();
+        const followersContainer = document.getElementById("Followers");
 
+        let followersList = '';
+        if(followers.length == 0){
+            followersContainer.innerHTML = `<br><h1>User doesn't have any followers!</h1>`;
+        }
+        else{
+            followersList += `<h2 style="text-align:center;">${data.login} has ${followers.length} Followers</h2>`
+            followers.forEach((follower) => {
+                followersList += `
+                    <div class="repo-detail">
+                        <h2>${follower.login}</h2>
+                    </div>
+                `;
+            });
+            followersContainer.innerHTML = followersList;
+        }
+    }
     
 }
 
