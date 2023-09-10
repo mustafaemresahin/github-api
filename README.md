@@ -39,12 +39,12 @@ This project uses the GitHub API for which authentication is required. For that,
 2. Generate a new token with the necessary permissions (`repo`, `read:user`, etc).
 3. Open the script file (`script.js` or whatever your main JavaScript file is called) where the fetch function is called and replace the token in the headers:
 
-\`\`\`javascript
+```javascript
 const username = document.getElementById("searchInput").value;
 const headers = {
-    "Authorization": \`token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE\`
+    "Authorization": `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
 };
-\`\`\`
+```
 
 Replace `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE` with your generated Personal Access Token.
 
