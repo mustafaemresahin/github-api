@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" 
-      type="image/png" 
-      href="https://projects.mustafaemresahin.com/github-api/images/github-icon.png">
+    <link rel="icon" type="image/png" href="https://projects.mustafaemresahin.com/github-api/images/github-icon.png">
     <title>Github API</title>
 </head>
 <body>
     <div class="container" id="container">
-        <h1 onclick="refresh()" style="cursor: pointer;"><img src="https://projects.mustafaemresahin.com/github-api/images/github-logo.png" style="width:50px; height:50px;">Github API</h1>
+        <div style="text-align: center;">
+            <div style="display: inline-block; vertical-align: middle;">
+              <img src="https://projects.mustafaemresahin.com/github-api/images/github-logo.png" style="width:55px; height:55px;">
+            </div>
+            <h1 style="cursor: pointer; display: inline-block; vertical-align: middle; margin: 0;">Github API</h1>
+        </div>          
+        <hr style="color:white;">
         <div class="searchBox">
             <input type="text" id="searchInput" placeholder="Enter Github Username">
             <button onclick="searchGithub()">Search</button>
