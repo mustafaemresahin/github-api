@@ -4,6 +4,15 @@
 
 This project uses JavaScript to fetch GitHub profile data and repositories using the GitHub API. It's a great way to quickly look up GitHub user details without leaving your local development environment.
 
+## Live Server
+### Access the Live Project
+
+The GitHub Profile Fetcher project is hosted and can be accessed live at:
+
+<a href="https://projects.mustafaemresahin.com/github-api">GitHub Profile Fetcher Live Project</a>
+
+Simply click the link to use the application in real-time without the need for local setup.
+
 ## Features
 
 - Fetches GitHub user profile details
