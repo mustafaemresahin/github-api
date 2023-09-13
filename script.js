@@ -2,7 +2,7 @@ const searchGithub = async () => {
     // Fetch user profile
     const username = document.getElementById("searchInput").value;
     const headers = {
-        "Authorization": `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
+        "Authorization": `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`
     };
     
     const response = await fetch(`https://api.github.com/users/${username}`, { headers });
@@ -53,7 +53,7 @@ const searchGithub = async () => {
 
 
         // Fetch and display repositories
-        const response2 = await fetch(`https://api.github.com/users/${username}/repos`, { headers });
+        const response2 = await fetch(`https://api.github.com/users/${username}/repos?page=1&per_page=100`, { headers });
         const repos = await response2.json();
         const reposContainer = document.getElementById("Repos");
 
@@ -62,7 +62,13 @@ const searchGithub = async () => {
             reposContainer.innerHTML = `<br><h1>User doesn't have any repos!</h1>`;
         }
         else{
-            repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} public Repositories</h2>`
+            if(data.public_repos <= 100){
+                repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} public Repositories</h2>`
+            }
+            else{
+                repoList += `<h2 style="text-align:center;">${data.login} has ${data.public_repos} public Repositories</h2>`
+                repoList += `<h5 style="text-align:center;">Only displaying 100</h5>`
+            }
             repos.forEach((repo) => {
                 repoList += `
                     <div class="repo-detail">
@@ -75,7 +81,7 @@ const searchGithub = async () => {
             reposContainer.innerHTML = repoList;
         }
         // Fetch and display repositories
-        const response3 = await fetch(`https://api.github.com/users/${username}/followers`, { headers });
+        const response3 = await fetch(`https://api.github.com/users/${username}/followers?page=1&per_page=100`, { headers });
         const followers = await response3.json();
         const followersContainer = document.getElementById("Followers");
 
@@ -84,7 +90,13 @@ const searchGithub = async () => {
             followersContainer.innerHTML = `<br><h1>User doesn't have any followers!</h1>`;
         }
         else{
-            followersList += `<h2 style="text-align:center;">${data.login} has ${followers.length} Followers</h2>`
+            if(data.followers > 100){
+                followersList += `<h2 style="text-align:center;">${data.login} has ${data.followers} Followers</h2>`
+                followersList += `<h5 style="text-align:center;">Only displaying 100</h5>`
+            }
+            else{
+                followersList += `<h2 style="text-align:center;">${data.login} has ${followers.length} Followers</h2>`
+            }
             followers.forEach((follower) => {
                 followersList += `
                     <div class="repo-detail">
