@@ -21,6 +21,8 @@ const searchGithub = async () => {
         mini.style.display = "block";
         // Get elements from the profile tab
         const profileImage = document.querySelector(".profile-image img");
+        const langs = document.querySelector(".most-used-languages img");
+        const streak = document.querySelector(".streak img");
         const name = document.querySelector(".name");
         const usernameEl = document.querySelector(".username");
         const bio = document.querySelector(".bio");
@@ -50,7 +52,9 @@ const searchGithub = async () => {
         else{
             statsValues[5].innerText = "Account doesn't have a website";
         }
-
+            
+        langs.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=${data.login}&layout=compact&theme=gruvbox`;
+        streak.src = `https://streak-stats.demolab.com/?user=${data.login}&theme=gruvbox`;
 
         // Fetch and display repositories
         const response2 = await fetch(`https://api.github.com/users/${username}/repos?page=1&per_page=100`, { headers });
