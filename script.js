@@ -53,8 +53,8 @@ const searchGithub = async () => {
             statsValues[5].innerText = "Account doesn't have a website";
         }
             
-        langs.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=${data.login}&layout=compact&theme=gruvbox`;
-        streak.src = `https://streak-stats.demolab.com/?user=${data.login}&theme=gruvbox`;
+        langs.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=${data.login}&layout=compact&theme=blueberry`;
+        streak.src = `https://streak-stats.demolab.com/?user=${data.login}&theme=blueberry`;
 
         // Fetch and display repositories
         const response2 = await fetch(`https://api.github.com/users/${username}/repos?page=1&per_page=100`, { headers });
