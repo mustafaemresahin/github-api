@@ -26,6 +26,7 @@
                 <button class="tablinks active" onclick="openTab(event, 'Details')" id="defaultOpen">Details</button>
                 <button class="tablinks" onclick="openTab(event, 'Repos')">Repositories</button>
                 <button class="tablinks" onclick="openTab(event, 'Followers')">Followers</button>
+                <button class="tablinks" onclick="openTab(event, 'Stats')">Stats</button>
             </div>
             <div id="Details" class="tab-content">
                 <div class="profile">
@@ -74,6 +75,19 @@
             </div>
             <div id="Repos" class="tab-content"></div>
             <div id="Followers" class="tab-content"></div>
+            <div id="Stats" class="tab-content">
+                <div style="text-align: center;">
+                    <h2>Most Used Languages</h2>
+                    <div class="most-used-languages" style="display: inline-block;">
+                        <img src="#" alt="Most Used Languages" />
+                    </div>
+                    <br>
+                    <h2>Streaks</h2>
+                    <div class="streak" style="display: inline-block;">
+                        <img src="#" alt="Streak" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
