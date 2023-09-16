@@ -2,7 +2,7 @@ const searchGithub = async () => {
     // Fetch user profile
     const username = document.getElementById("searchInput").value;
     const headers = {
-        "Authorization": `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
+        "Authorization": `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`
     };
     
     const response = await fetch(`https://api.github.com/users/${username}`, { headers });
@@ -103,9 +103,15 @@ const searchGithub = async () => {
             }
             followers.forEach((follower) => {
                 followersList += `
-                    <div class="repo-detail">
-                        <h2>${follower.login}</h2>
-                    </div>
+                <div class="follower-profile">
+                <div class="profile-image" style="width: 100px;height: 100px;">
+                    <img src="${follower.avatar_url}" alt="${follower.login}'s Profile Image" />
+                </div>
+                <div class="profile-details">
+                    <h2>${follower.login}</h2>
+                    <a href="${follower.html_url}" target="_blank" class="btn-profile"><button>Go to profile</button></a>
+                </div>
+            </div>
                 `;
             });
             followersContainer.innerHTML = followersList;
@@ -131,12 +137,49 @@ const searchGithub = async () => {
             }
             following.forEach((follow) => {
                 followingList += `
-                    <div class="repo-detail">
-                        <h2>${follow.login}</h2>
-                    </div>
+                <div class="follower-profile">
+                <div class="profile-image" style="width: 100px;height: 100px;">
+                    <img src="${follow.avatar_url}" alt="${follow.login}'s Profile Image" />
+                </div>
+                <div class="profile-details">
+                    <h2>${follow.login}</h2>
+                    <a href="${follow.html_url}" target="_blank" class="btn-profile"><button>Go to profile</button></a>
+                </div>
+            </div>
                 `;
             });
             followingContainer.innerHTML = followingList;
+        }
+        // Make sure the API endpoint is correct
+        const response5 = await fetch(`https://api.github.com/users/${username}/starred`);
+        // Parse the JSON response
+        const starred = await response5.json();
+
+        // Get the container for displaying the data
+        const starredContainer = document.getElementById("Starred");
+
+        // Initialize the HTML string
+        let starredList = '';
+
+        // Check if the user has any starred repos
+        if (starred.length === 0) {
+        starredContainer.innerHTML = `<br><h1>No starred repos!</h1>`;
+        } else {
+        starredList += `<h2 style="text-align:center;">${username} has ${starred.length} starred public Repositories</h2>`;
+        
+        // Loop through each starred repo and add it to the HTML string
+        starred.forEach((star) => {
+            starredList += `
+            <div class="repo-detail">
+                <h2>${star.name}</h2><br>
+                <p>${star.description || 'No description'}</p><br>
+                <a href="${star.html_url}" target="_blank"><button>Go to repository</button></a>
+            </div>
+            `;
+        });
+
+        // Update the container's innerHTML
+        starredContainer.innerHTML = starredList;
         }
     }
     
