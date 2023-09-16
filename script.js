@@ -84,7 +84,7 @@ const searchGithub = async () => {
             });
             reposContainer.innerHTML = repoList;
         }
-        // Fetch and display repositories
+        // Fetch and display followers
         const response3 = await fetch(`https://api.github.com/users/${username}/followers?page=1&per_page=100`, { headers });
         const followers = await response3.json();
         const followersContainer = document.getElementById("Followers");
@@ -109,6 +109,34 @@ const searchGithub = async () => {
                 `;
             });
             followersContainer.innerHTML = followersList;
+        }
+
+
+        // Fetch and display followers
+        const response4 = await fetch(`https://api.github.com/users/${username}/following?page=1&per_page=100`, { headers });
+        const following = await response4.json();
+        const followingContainer = document.getElementById("Following");
+
+        let followingList = '';
+        if(following.length == 0){
+            followingContainer.innerHTML = `<br><h1>User isn't following anyone!!</h1>`;
+        }
+        else{
+            if(data.followers > 100){
+                followingList += `<h2 style="text-align:center;">${data.login} is following ${data.following} people</h2>`
+                followingList += `<h5 style="text-align:center;">Only displaying 100</h5>`
+            }
+            else{
+                followingList += `<h2 style="text-align:center;">${data.login} is following ${following.length} people</h2>`
+            }
+            following.forEach((follow) => {
+                followingList += `
+                    <div class="repo-detail">
+                        <h2>${follow.login}</h2>
+                    </div>
+                `;
+            });
+            followingContainer.innerHTML = followingList;
         }
     }
     
