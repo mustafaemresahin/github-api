@@ -39,9 +39,9 @@ const searchGithub = async () => {
         profileLink.innerHTML = `<button>Go to profile</button>`;
 
         // Populate the stats
-        statsValues[0].innerText = data.public_repos;
-        statsValues[1].innerText = data.followers;
-        statsValues[2].innerText = data.following;
+        statsValues[0].innerText = data.public_repos.toLocaleString();
+        statsValues[1].innerText = data.followers.toLocaleString();
+        statsValues[2].innerText = data.following.toLocaleString();
         const dateObj = new Date(data.created_at);
         const formattedDate = dateObj.toLocaleString();
         statsValues[3].innerText = formattedDate;
@@ -70,7 +70,7 @@ const searchGithub = async () => {
                 repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} public Repositories</h2>`
             }
             else{
-                repoList += `<h2 style="text-align:center;">${data.login} has ${data.public_repos} public Repositories</h2>`
+                repoList += `<h2 style="text-align:center;">${data.login} has ${data.public_repos.toLocaleString()} public Repositories</h2>`
                 repoList += `<h5 style="text-align:center;">Only displaying 100</h5>`
             }
             repos.forEach((repo) => {
@@ -95,7 +95,7 @@ const searchGithub = async () => {
         }
         else{
             if(data.followers > 100){
-                followersList += `<h2 style="text-align:center;">${data.login} has ${data.followers} Followers</h2>`
+                followersList += `<h2 style="text-align:center;">${data.login} has ${data.followers.toLocaleString()} Followers</h2>`
                 followersList += `<h5 style="text-align:center;">Only displaying 100</h5>`
             }
             else{
@@ -129,7 +129,7 @@ const searchGithub = async () => {
         }
         else{
             if(data.followers > 100){
-                followingList += `<h2 style="text-align:center;">${data.login} is following ${data.following} people</h2>`
+                followingList += `<h2 style="text-align:center;">${data.login} is following ${data.following.toLocaleString()} people</h2>`
                 followingList += `<h5 style="text-align:center;">Only displaying 100</h5>`
             }
             else{
@@ -182,7 +182,7 @@ const searchGithub = async () => {
             }
 
             if(count > 100){
-                starredList += `<h2 style="text-align:center;">${username} has ${count} starred public Repositories</h2><h5 style="text-align:center;">Only displaying 100</h5>`;
+                starredList += `<h2 style="text-align:center;">${username} has ${count.toLocaleString()} starred public Repositories</h2><h5 style="text-align:center;">Only displaying 100</h5>`;
             
                 // Loop through each starred repo and add it to the HTML string
                 starred.forEach((star) => {
