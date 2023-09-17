@@ -151,7 +151,7 @@ const searchGithub = async () => {
             followingContainer.innerHTML = followingList;
         }
         // Make sure the API endpoint is correct
-        const response5 = await fetch(`https://api.github.com/users/${username}/starred`);
+        const response5 = await fetch(`https://api.github.com/users/${username}/starred?page=1&per_page=100`);
         // Parse the JSON response
         const starred = await response5.json();
 
@@ -164,22 +164,57 @@ const searchGithub = async () => {
         // Check if the user has any starred repos
         if (starred.length === 0) {
         starredContainer.innerHTML = `<br><h1>No starred repos!</h1>`;
-        } else {
-        starredList += `<h2 style="text-align:center;">${username} has ${starred.length} starred public Repositories</h2>`;
-        
-        // Loop through each starred repo and add it to the HTML string
-        starred.forEach((star) => {
-            starredList += `
-            <div class="repo-detail">
-                <h2>${star.name}</h2><br>
-                <p>${star.description || 'No description'}</p><br>
-                <a href="${star.html_url}" target="_blank"><button>Go to repository</button></a>
-            </div>
-            `;
-        });
+        } 
+        else {
+            //Count starred repos
+            let url = `https://api.github.com/users/${username}/starred?per_page=100`;
+            let count = 0;
 
-        // Update the container's innerHTML
-        starredContainer.innerHTML = starredList;
+            while (url) {
+                const response = await fetch(url);
+
+                const data = await response.json();
+                count += data.length;
+
+                const linkHeader = response.headers.get('Link');
+                const nextLink = linkHeader && linkHeader.match(/<([^>]+)>;\s*rel="next"/);
+                url = nextLink ? nextLink[1] : null;
+            }
+
+            if(count > 100){
+                starredList += `<h2 style="text-align:center;">${username} has ${count} starred public Repositories</h2><h5 style="text-align:center;">Only displaying 100</h5>`;
+            
+                // Loop through each starred repo and add it to the HTML string
+                starred.forEach((star) => {
+                    starredList += `
+                    <div class="repo-detail">
+                        <h2>${star.name}</h2><br>
+                        <p>${star.description || 'No description'}</p><br>
+                        <a href="${star.html_url}" target="_blank"><button>Go to repository</button></a>
+                    </div>
+                    `;
+                });
+
+                // Update the container's innerHTML
+                starredContainer.innerHTML = starredList;
+            }
+            else{
+                starredList += `<h2 style="text-align:center;">${username} has ${count} starred public Repositories</h2>`;
+            
+                // Loop through each starred repo and add it to the HTML string
+                starred.forEach((star) => {
+                    starredList += `
+                    <div class="repo-detail">
+                        <h2>${star.name}</h2><br>
+                        <p>${star.description || 'No description'}</p><br>
+                        <a href="${star.html_url}" target="_blank"><button>Go to repository</button></a>
+                    </div>
+                    `;
+                });
+
+                // Update the container's innerHTML
+                starredContainer.innerHTML = starredList;
+            }
         }
     }
     
