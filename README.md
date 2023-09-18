@@ -29,7 +29,7 @@ Simply click the link to use the application in real-time without the need for l
 
 1. Clone this repository to your local machine
 ```bash
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/mustafaemresahin/github-api.git
 ```
 
 2. Open `index.html` in your web browser
