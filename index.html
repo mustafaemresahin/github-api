@@ -32,43 +32,48 @@
             </div>
             <div id="Details" class="tab-content">
                 <div class="profile">
-                    <div>
+                    <div style="display: flex;">
                         <div class="profile-image" style="display: inline-block;">
                             <img src="#" alt="User Image" />
                         </div>
-                        <div class="stats" style="display: inline-block;">
-                            <div style="display: inline-block; justify-content: center;
-                            border-width: 5px; border-color: red; ">
+                        <div class="stats">
+                            <div class="stats-container">
+                                <div class="stats-value"></div>
                                 <div class="stats-name">Public Repos</div>
-                                <div class="stats-value"></div>
                             </div>
-                            <div style="display: inline-block;">
+                            <div class="stats-container">
+                                <div class="stats-value"></div>
                                 <div class="stats-name">Followers</div>
-                                <div class="stats-value"></div>
                             </div>
-                            <div style="display: inline-block;">
-                                <div class="stats-name">Following</div>
+                            <div class="stats-container">
                                 <div class="stats-value"></div>
+                                <div class="stats-name">Following</div>
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="profile-details">
                         <h2 class="name"></h2>
                         <p class="username"></p>
+                        <br>
                         <p class="bio"></p>
+                        <br>
                         <p class="location"></p>
+                        <br>
                         <a href="#" target="_blank">Go to github profile</a>
-                        <div class="stats">
-                            <div>
-                                <div class="stats-name">Account Created At:</div>
-                                <div class="stats-value"></div>
+                        <hr>
+                        <div class="info">
+                            <div class="infos">
+                                <div class="stats-name"><strong>Account Created At:</strong></div>
+                                <div class="stats-value" style="padding-top: 10px;"></div>
                             </div>
-                            <div>
-                                <div class="stats-name">Email:</div>
-                                <div class="stats-value"></div>
+                            <div class="infos">
+                                <div class="stats-name"><strong>Email:</strong></div>
+                                <div class="stats-value"  style="padding-top: 10px;"></div>
                             </div>
-                            <div>
-                                <div class="stats-name">Blog:</div>
+                            <br>
+                            <div class="infos">
+                                <div class="stats-name"><strong>Blog:</strong></div>
                                 <div class="stats-value"></div>
                             </div>
                         </div>
@@ -82,11 +87,14 @@
             <div id="Stats" class="tab-content">
             <div style="text-align: center;">
                 <h2>Most Used Languages</h2>
+                <br>
                 <div class="most-used-languages" style="display: inline-block;">
                     <img src="#" alt="Most Used Languages" />
                 </div>
                 <br>
+                <hr>
                 <h2>Streaks</h2>
+                <br>
                 <div class="streak" style="display: inline-block;">
                     <img src="#" alt="Streak" />
                 </div>
