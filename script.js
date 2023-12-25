@@ -2,7 +2,7 @@ const searchGithub = async () => {
     // Fetch user profile
     const username = document.getElementById("searchInput").value;
     const headers = {
-        "Authorization": `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`
+        "Authorization": `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
     };
     
     const response = await fetch(`https://api.github.com/users/${username}`, { headers });
