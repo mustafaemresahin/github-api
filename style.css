@@ -71,8 +71,10 @@ hr {
 }
 
 .profile-image {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
+    min-width: 50px;
+    min-height: 50px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #7469f5;
@@ -108,4 +110,45 @@ hr {
     background-color: #2a313d;
     color: #7469f5;
     border-bottom: 4px solid #7469f5;
+}
+
+.stats {
+    display: flex;
+}
+
+.stats-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    font-size: larger;
+    text-align: center;
+    width: fit-content;
+    block-size: fit-content;
+}
+
+.profile-details {
+    margin-top: 30px;
+}
+
+.stats-name {
+    padding-left: 20px;
+}
+
+.infos {
+    padding: 5px;
+    display: flex;
+}
+
+.infos .stats-name {
+    padding-top: 10px;
+}
+
+.infos .stats-value {
+    padding-left: 10px;
+}
+
+.stats .stats-value {
+    padding-left: 10px;
+    font-weight: bold;
 }
