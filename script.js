@@ -2,7 +2,7 @@ const searchGithub = async () => {
     // Fetch user profile
     const username = document.getElementById("searchInput").value;
     const headers = {
-        "Authorization": `YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE `
+        "Authorization": `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`
     };
     
     const response = await fetch(`https://api.github.com/users/${username}`, { headers });
@@ -34,7 +34,7 @@ const searchGithub = async () => {
         name.innerText = data.name || data.login;
         usernameEl.innerText = "@" + data.login;
         bio.innerText = data.bio || "Account doesn't have a bio.";
-        location.innerText = data.location;
+        location.innerText = "Location: " + data.location;
         profileLink.href = data.html_url;
         profileLink.innerHTML = `<button>Go to profile</button>`;
 
@@ -45,7 +45,13 @@ const searchGithub = async () => {
         const dateObj = new Date(data.created_at);
         const formattedDate = dateObj.toLocaleString();
         statsValues[3].innerText = formattedDate;
-        statsValues[4].innerText = data.email;
+        if(data.email == null){
+            statsValues[4].innerText = "Email is not public";
+        }
+        else{
+            statsValues[4].innerText = data.email;
+        }
+        
         if(data.blog){
             statsValues[5].innerHTML = `<a target="_blank" href="https://${data.blog}"><button>${data.blog}</button></a>`;
         }
@@ -104,14 +110,15 @@ const searchGithub = async () => {
             followers.forEach((follower) => {
                 followersList += `
                 <div class="follower-profile">
-                <div class="profile-image" style="width: 100px;height: 100px;">
-                    <img src="${follower.avatar_url}" alt="${follower.login}'s Profile Image" />
+                    <div class="profile-image" style="width: 100px;height: 100px;">
+                        <img src="${follower.avatar_url}" alt="${follower.login}'s Profile Image" />
+                    </div>
+                    <div class="profile-details">
+                        <h2>${follower.login}</h2>
+                        <br>
+                        <a href="${follower.html_url}" target="_blank" class="btn-profile"><button>Go to profile</button></a>
+                    </div>
                 </div>
-                <div class="profile-details">
-                    <h2>${follower.login}</h2>
-                    <a href="${follower.html_url}" target="_blank" class="btn-profile"><button>Go to profile</button></a>
-                </div>
-            </div>
                 `;
             });
             followersContainer.innerHTML = followersList;
@@ -143,6 +150,7 @@ const searchGithub = async () => {
                 </div>
                 <div class="profile-details">
                     <h2>${follow.login}</h2>
+                    <br>
                     <a href="${follow.html_url}" target="_blank" class="btn-profile"><button>Go to profile</button></a>
                 </div>
             </div>
