@@ -8,6 +8,7 @@
     <title>Github API</title>
 </head>
 <body>
+<div style="min-height: calc(100% - 50px);">
     <div class="container" id="container">
         <div style="text-align: center;" onclick="refresh()">
             <div style="display: inline-block; vertical-align: middle;">
@@ -110,15 +111,16 @@
     </div>
 </div>
 <br>
-<br>
-<footer>
-    <div class="improve">
-        <div class="icon">
-            <ion-icon name="logo-github"></ion-icon>
-        </div>
-        <a href="https://github.com/mustafaemresahin/github-api" target="_blank">Improve on GitHub</a>
-    </div>
-</footer>
+<div class="button-container">
+    <a href="https://github.com/mustafaemresahin/github-api" target="_blank" class="improve-link">
+        <button id="bottomButton">
+            <div class="icon">
+                <ion-icon name="logo-github"></ion-icon>
+            </div>
+            <p>Improve on GitHub</p>
+        </button>
+    </a>
+</div>
 <script src="script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
