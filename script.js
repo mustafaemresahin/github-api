@@ -230,6 +230,11 @@ const searchGithub = async () => {
     
 }
 
+function openTabFromDropdown() {
+    var selectedTab = document.getElementById("mobileTabMenu").value;
+    openTab(null, selectedTab);
+}
+
 // Function to handle tab changes
 function openTab(evt, tabName) {
     let i, tabcontent, tablinks;
