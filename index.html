@@ -31,6 +31,15 @@
                 <button class="tablinks" onclick="openTab(event, 'Starred')">Starred</button>
                 <button class="tablinks" onclick="openTab(event, 'Stats')">Stats</button>
             </div>
+            <!-- Dropdown menu for mobile view -->
+            <select id="mobileTabMenu" class="mobile-dropdown" onchange="openTabFromDropdown()">
+                <option value="Details">Details</option>
+                <option value="Repos">Repositories</option>
+                <option value="Followers">Followers</option>
+                <option value="Following">Following</option>
+                <option value="Starred">Starred</option>
+                <option value="Stats">Stats</option>
+            </select>
             <div id="Details" class="tab-content">
                 <div class="profile">
                     <div style="display: flex;">
@@ -90,21 +99,21 @@
                 <h2>Most Used Languages</h2>
                 <br>
                 <div class="most-used-languages" style="display: inline-block;">
-                    <img src="#" alt="Most Used Languages" />
+                    <img src="#" alt="Most Used Languages" style="max-width: 100%; height: auto; display: block;"/>
                 </div>
                 <br>
                 <hr>
                 <h2>Streaks</h2>
                 <br>
                 <div class="streak" style="display: inline-block;">
-                    <img src="#" alt="Streak" />
+                    <img src="#" alt="Streak" style="max-width: 100%; height: auto; display: block;"/>
                 </div>
                 <br>
                 <hr>
                 <h2>Stats</h2>
                 <br>
                 <div class="stat" style="display: inline-block;">
-                    <img src="#" alt="Stat" />
+                    <img src="#" alt="Stat" style="max-width: 100%; height: auto; display: block;"/>
                 </div>
             </div>
         </div>
