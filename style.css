@@ -14,7 +14,7 @@ body {
     height: 100%;
     margin: 0;
     min-height: 100vh; 
-    min-width: 800px;
+    
     overflow-y: auto;
     padding-top: 40px;
 }
@@ -184,4 +184,57 @@ hr {
 .icon {
     font-size: 24px;
     margin-right: 10px;
+}
+
+.mobile-dropdown {
+    display: none; /* initially hidden */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background-color: #7469f5;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        padding: 0 10px;
+        min-width: 100px;
+    }
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .searchBox {
+        padding: 10px;
+    }
+
+    .searchBox input {
+        margin-bottom: 10px;
+    }
+
+    .tab {
+        display: none;
+    }
+
+    .mobile-dropdown {
+        display: block; /* show dropdown */
+    }
+
+    .tablinks {
+        margin-bottom: 10px;
+    }
+
+    .profile-image {
+        min-width: 100px;
+        height: 100px;
+    }
+
+    .stats-container {
+        padding: 10px 5px;
+    }
 }
