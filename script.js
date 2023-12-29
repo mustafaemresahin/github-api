@@ -235,9 +235,10 @@ function openTabFromDropdown() {
     openTab(null, selectedTab);
 }
 
-// Function to handle tab changes
+
+
 function openTab(evt, tabName) {
-    let i, tabcontent, tablinks;
+    var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
@@ -249,8 +250,20 @@ function openTab(evt, tabName) {
     }
 
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    if (evt) {
+        evt.currentTarget.className += " active";
+    } else {
+        // Update active state for dropdown selection
+        var activeTabLink = document.querySelector(`.tablinks[onclick="openTab(event, '${tabName}')"]`);
+        if (activeTabLink) {
+            activeTabLink.className += " active";
+        }
+    }
+
+    // Update dropdown selection
+    document.getElementById("mobileTabMenu").value = tabName;
 }
+
 
 // Open the "Details" tab by default
 document.getElementById("defaultOpen").click();
