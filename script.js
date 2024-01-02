@@ -12,12 +12,20 @@ const searchGithub = async () => {
     if (response.status == 404) {
         // Handle user not found
         const mini = document.getElementById("mini");
-        mini.style.display = "block";
-        mini.innerHTML = '<h1 style="padding-top:20px;">User does not exist!</h1><div style="text-align:center;"><h3>Refresh the page</h3><button onclick="refresh()">Refresh</button></div>';
-        searchInput.disabled = true;
-        searchButton.disabled = true;
+        mini.style.display = "none";
+        const error = document.getElementById("error");
+        error.innerText = 'User not found!';
+    }
+    else if (response.status == 401) {
+        // Handle not authorized
+        const mini = document.getElementById("mini");
+        mini.style.display = "none";
+        const error = document.getElementById("error");
+        error.innerText = 'Not authorized!';
     }
     else{
+        const error = document.getElementById("error");
+        error.innerText = '';
         openTab(null, "Details");
         const mini = document.getElementById("mini");
         mini.style.display = "block";

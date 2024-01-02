@@ -238,3 +238,7 @@ hr {
         padding: 10px 5px;
     }
 }
+
+#error {
+    text-align: center;
+}
