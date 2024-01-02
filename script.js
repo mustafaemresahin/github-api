@@ -18,6 +18,7 @@ const searchGithub = async () => {
         searchButton.disabled = true;
     }
     else{
+        openTab(null, "Details");
         const mini = document.getElementById("mini");
         mini.style.display = "block";
         // Get elements from the profile tab
