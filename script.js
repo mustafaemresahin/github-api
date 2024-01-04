@@ -11,12 +11,12 @@ const locationInfo = document.querySelector(".location");
 const profileLink = document.querySelector("a");
 const statsValues = document.querySelectorAll(".stats-value");
 
-const headers = {
-    "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`,
-    'User-Agent': 'GitHub User Finder'
-};
-
 const searchGithub = async (random) => {
+    
+    const headers = {
+        "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`,
+        'User-Agent': 'GitHub User Finder'
+    };
 
     if(random){
         const usersResponse = await fetch('https://api.github.com/users');
@@ -31,9 +31,9 @@ const searchGithub = async (random) => {
         }
 
         const username = data.login;
-        fetchRepos(username, data);
-        fetchFollowers(username, data);
-        fetchFollowing(username, data);
+        fetchRepos(username, data, headers);
+        fetchFollowers(username, data, headers);
+        fetchFollowing(username, data, headers);
         fetchStarred(username, data);
         displayStats(data);
     }
@@ -45,15 +45,15 @@ const searchGithub = async (random) => {
         if(checkStatus(response)){
             account(data);
         }
-        fetchRepos(username, data);
-        fetchFollowers(username, data);
-        fetchFollowing(username, data);
+        fetchRepos(username, data, headers);
+        fetchFollowers(username, data, headers);
+        fetchFollowing(username, data, headers);
         fetchStarred(username, data);
         displayStats(data);
     }
     
     
-}
+};
 
 function displayStats(data){
     langs.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=${data.login}&layout=compact&theme=blueberry`;
@@ -72,11 +72,11 @@ function displayRepos(repos, data){
     }
     else{
         if(data.public_repos <= 100){
-            repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} public Repositories</h2>`
+            repoList += `<h2 style="text-align:center;">${data.login} has ${repos.length} public Repositories</h2>`;
         }
         else{
-            repoList += `<h2 style="text-align:center;">${data.login} has ${data.public_repos.toLocaleString()} public Repositories</h2>`
-            repoList += `<h5 style="text-align:center;">Only displaying 100</h5>`
+            repoList += `<h2 style="text-align:center;">${data.login} has ${data.public_repos.toLocaleString()} public Repositories</h2>`;
+            repoList += `<h5 style="text-align:center;">Only displaying 100</h5>`;
         }
         repos.forEach((repo) => {
             repoList += `
@@ -101,11 +101,11 @@ function displayFollowers(followers, data){
     }
     else{
         if(data.followers > 100){
-            followersList += `<h2 style="text-align:center;">${data.login} has ${data.followers.toLocaleString()} Followers</h2>`
-            followersList += `<h5 style="text-align:center;">Only displaying 100</h5>`
+            followersList += `<h2 style="text-align:center;">${data.login} has ${data.followers.toLocaleString()} Followers</h2>`;
+            followersList += `<h5 style="text-align:center;">Only displaying 100</h5>`;
         }
         else{
-            followersList += `<h2 style="text-align:center;">${data.login} has ${followers.length} Followers</h2>`
+            followersList += `<h2 style="text-align:center;">${data.login} has ${followers.length} Followers</h2>`;
         }
         followers.forEach((follower) => {
             followersList += `
@@ -135,11 +135,11 @@ function displayFollowing(following, data){
     }
     else{
         if(data.following > 100){
-            followingList += `<h2 style="text-align:center;">${data.login} is following ${data.following.toLocaleString()} people</h2>`
-            followingList += `<h5 style="text-align:center;">Only displaying 100</h5>`
+            followingList += `<h2 style="text-align:center;">${data.login} is following ${data.following.toLocaleString()} people</h2>`;
+            followingList += `<h5 style="text-align:center;">Only displaying 100</h5>`;
         }
         else{
-            followingList += `<h2 style="text-align:center;">${data.login} is following ${following.length} people</h2>`
+            followingList += `<h2 style="text-align:center;">${data.login} is following ${following.length} people</h2>`;
         }
         following.forEach((follow) => {
             followingList += `
@@ -172,7 +172,7 @@ const countStarred = async (url) => {
         url = nextLink ? nextLink[1] : null;
     }
     return count;
-}
+};
 
 async function displayStarred(starred, username){
     const starredContainer = document.getElementById("Starred");
@@ -224,21 +224,21 @@ async function displayStarred(starred, username){
     }
 }
 
-const fetchRepos = async (username, data) => {
+const fetchRepos = async (username, data, headers) => {
     // Fetch repositories
     const repoResponse = await fetch(`https://api.github.com/users/${username}/repos?page=1&per_page=100`, { headers });
     const repos = await repoResponse.json();
     displayRepos(repos, data);
 }
 
-const fetchFollowers = async (username, data) => {
+const fetchFollowers = async (username, data, headers) => {
     // Fetch followers
     const followerResponse = await fetch(`https://api.github.com/users/${username}/followers?page=1&per_page=100`, { headers });
     const followers = await followerResponse.json();
     displayFollowers(followers, data);
 }
 
-const fetchFollowing = async (username, data) => {
+const fetchFollowing = async (username, data, headers) => {
     // Fetch following
     const followingResponse = await fetch(`https://api.github.com/users/${username}/following?page=1&per_page=100`, { headers });
     const following = await followingResponse.json();
