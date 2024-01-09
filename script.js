@@ -19,10 +19,10 @@ const searchGithub = async (random) => {
     };
 
     if(random){
-        const usersResponse = await fetch('https://api.github.com/users');
+        const usersResponse = await fetch('https://api.github.com/users?per_page=100');
         const users = await usersResponse.json();
         const randomUser = users[Math.floor(Math.random() * users.length)];
-    
+            
         const response = await fetch(randomUser.url, { headers });
         const data = await response.json();
 
