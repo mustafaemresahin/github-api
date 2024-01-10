@@ -23,7 +23,7 @@ const searchGithub = async (random) => {
     stat.src = `#`;
     
     const headers = {
-        "Authorization": `token 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`,
+        "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`,
         'User-Agent': 'GitHub User Finder'
     };
 

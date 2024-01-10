@@ -50,7 +50,8 @@ To use the GitHub API, a Personal Access Token is required for authentication:
 
 ```bash
 const headers = {
-    "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`
+        "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`,
+        'User-Agent': 'GitHub User Finder'
 };
 ```
 
