@@ -12,30 +12,47 @@ const profileLink = document.querySelector("a");
 const statsValues = document.querySelectorAll(".stats-value");
 
 const searchGithub = async (random) => {
+
+    document.getElementById("Repos").innerHTML = `<p style="text-align: center;">Loading...</p>`;
+    document.getElementById("Followers").innerHTML = `<p style="text-align: center;">Loading...</p>`;
+    document.getElementById("Following").innerHTML = `<p style="text-align: center;">Loading...</p>`;
+    document.getElementById("Starred").innerHTML = `<p style="text-align: center;">Loading...</p>`;
+    
+    langs.src = `#`;
+    streak.src = `#`;
+    stat.src = `#`;
     
     const headers = {
-        "Authorization": `token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN_HERE`,
+        "Authorization": `token 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`,
         'User-Agent': 'GitHub User Finder'
     };
 
     if(random){
         const usersResponse = await fetch('https://api.github.com/users?per_page=100');
         const users = await usersResponse.json();
-        const randomUser = users[Math.floor(Math.random() * users.length)];
+        
+        if(usersResponse.status != 403){
+            const randomUser = users[Math.floor(Math.random() * users.length)];
             
-        const response = await fetch(randomUser.url, { headers });
-        const data = await response.json();
+            const response = await fetch(randomUser.url, { headers });
+            const data = await response.json();
 
-        if(checkStatus(response)){
-            account(data);
+            if(checkStatus(response)){
+                account(data);
+            }
+    
+            const username = data.login;
+            fetchRepos(username, data, headers);
+            fetchFollowers(username, data, headers);
+            fetchFollowing(username, data, headers);
+            fetchStarred(username, data);
+            displayStats(data);
+        }
+        else{
+            alert("Rate Limit Exceeded! Try again later.");
         }
 
-        const username = data.login;
-        fetchRepos(username, data, headers);
-        fetchFollowers(username, data, headers);
-        fetchFollowing(username, data, headers);
-        fetchStarred(username, data);
-        displayStats(data);
+        
     }
     else{
         const username = document.getElementById("searchInput").value;
@@ -228,28 +245,56 @@ const fetchRepos = async (username, data, headers) => {
     // Fetch repositories
     const repoResponse = await fetch(`https://api.github.com/users/${username}/repos?page=1&per_page=100`, { headers });
     const repos = await repoResponse.json();
-    displayRepos(repos, data);
+    
+    if (repoResponse.status == 403){
+        // Handle error
+        document.getElementById("Repos").innerText = "An Error Occured!";
+    }
+    else{
+        displayRepos(repos, data);
+    }
 }
 
 const fetchFollowers = async (username, data, headers) => {
     // Fetch followers
     const followerResponse = await fetch(`https://api.github.com/users/${username}/followers?page=1&per_page=100`, { headers });
     const followers = await followerResponse.json();
-    displayFollowers(followers, data);
+    
+    if (followerResponse.status == 403){
+        // Handle error
+        document.getElementById("Followers").innerText = "An Error Occured!";
+    }
+    else{
+        displayFollowers(followers, data);
+    }
 }
 
 const fetchFollowing = async (username, data, headers) => {
     // Fetch following
     const followingResponse = await fetch(`https://api.github.com/users/${username}/following?page=1&per_page=100`, { headers });
     const following = await followingResponse.json();
-    displayFollowing(following, data);
+    
+    if (followingResponse.status == 403){
+        // Handle error
+        document.getElementById("Following").innerText = "An Error Occured!";
+    }
+    else{
+        displayFollowing(following, data);
+    }
 }
 
 const fetchStarred = async (username, data) => {
     // Fetch starred repos
     const starredResponse = await fetch(`https://api.github.com/users/${username}/starred?page=1&per_page=100`);
     const starred = await starredResponse.json();
-    displayStarred(starred, username);
+    
+    if (starredResponse.status == 403){
+        // Handle error
+        document.getElementById("Starred").innerText = "An Error Occured!";
+    }
+    else{
+        displayStarred(starred, username);
+    }
 }
 
 function account(data){
